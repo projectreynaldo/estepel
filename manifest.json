@@ -1,0 +1,26 @@
+{
+  "name": "ESTEPEL — Surveilans Terpadu Penyakit Minsel",
+  "short_name": "ESTEPEL",
+  "description": "Elektronik Surveilans Terpadu Penyakit — Efektif & Langsung. Dinas Kesehatan Kabupaten Minahasa Selatan.",
+  "id": "./",
+  "start_url": "./index.html#/dashboard",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#F4F6FB",
+  "theme_color": "#0B1437",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["medical", "productivity", "government"],
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Input Laporan", "short_name": "Input", "url": "./index.html#/laporan/input", "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Monitoring Status", "short_name": "Monitoring", "url": "./index.html#/monitoring/status", "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Rekap STP", "short_name": "Rekap", "url": "./index.html#/data/rekap", "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

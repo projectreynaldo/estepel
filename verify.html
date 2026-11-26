@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Verifikasi Stempel Digital — ESTEPEL</title>
+  <meta name="description" content="Verifikasi keaslian Stempel Digital laporan STP Puskesmas — Dinas Kesehatan Kabupaten Minahasa Selatan.">
+  <meta name="theme-color" content="#0B1437">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .vf { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px 40px; background: radial-gradient(circle at 90% 0%, rgba(255,122,61,.10), transparent 40%), radial-gradient(circle at 0% 100%, rgba(91,61,245,.10), transparent 45%), var(--bg); }
+    .vf-top { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; width: 100%; max-width: 640px; }
+    .vf-logo { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #FF7A3D, #F5487F); color: #fff; flex: none; }
+    .vf-card { width: 100%; max-width: 640px; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--sh2); overflow: hidden; }
+    .vf-hd { padding: 26px 24px 22px; display: flex; gap: 18px; align-items: center; }
+    .vf-hd.ok { background: linear-gradient(135deg, #F0FDF4, #DCFCE7); border-bottom: 1px solid #BBF7D0; }
+    .vf-hd.bad { background: linear-gradient(135deg, #FEF2F2, #FEE2E2); border-bottom: 1px solid #FECACA; }
+    .vf-hd.wait { background: #F8FAFC; border-bottom: 1px solid var(--line); }
+    .vf-hd h1 { font-size: 20px; line-height: 1.25; }
+    .vf-ikon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+    .vf-body { padding: 20px 24px 24px; }
+    .vf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; }
+    .vf-grid > div > span:first-child { display: block; color: var(--mut); font-size: 11.5px; margin-bottom: 2px; }
+    .vf-grid b { font-weight: 600; font-size: 14px; word-break: break-word; }
+    .vf-foot { margin-top: 18px; font-size: 12px; color: var(--mut); text-align: center; max-width: 640px; }
+    @media (max-width: 520px) { .vf-grid { grid-template-columns: 1fr; } .vf-hd { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+  <main class="vf">
+    <div class="vf-top">
+      <div class="vf-logo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <div><div style="font:800 18px/1 var(--fh);letter-spacing:-.02em">ESTEPEL</div><div class="fs12 mut" style="margin-top:3px">Verifikasi Stempel Digital Laporan STP</div></div>
+    </div>
+    <section class="vf-card" id="hasil">
+      <div class="vf-hd wait"><span class="spin dk" style="width:30px;height:30px"></span><div><h1>Memeriksa keaslian…</h1><div class="fs12 mut">Mencocokkan tanda tangan digital dengan basis data ESTEPEL.</div></div></div>
+    </section>
+    <p class="vf-foot">Halaman ini hanya menampilkan identitas laporan — tidak memuat data kasus maupun data pribadi.<br>Dinas Kesehatan Kabupaten Minahasa Selatan • ESTEPEL</p>
+  </main>
+  <script src="./js/config.js"></script>
+  <script src="./js/core.js"></script>
+  <script src="./js/api.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var q = new URLSearchParams(location.search), box = document.getElementById('hasil');
+      function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+      function segel(c1, c2) {
+        return '<svg viewBox="0 0 120 120" width="76" height="76" style="transform:rotate(-8deg)" aria-hidden="true"><defs><path id="sgA" d="M 19 60 A 41 41 0 0 1 101 60"/><path id="sgB" d="M 14 60 A 46 46 0 0 0 106 60"/></defs>' +
+          '<circle cx="60" cy="60" r="56" fill="none" stroke="' + c1 + '" stroke-width="3"/><circle cx="60" cy="60" r="51" fill="none" stroke="' + c2 + '" stroke-width="1.2" stroke-dasharray="3 2.5"/><circle cx="60" cy="60" r="33" fill="none" stroke="' + c1 + '" stroke-width="1.6"/>' +
+          '<text font-family="Plus Jakarta Sans,Inter,Arial" font-size="7.4" font-weight="800" letter-spacing=".9" fill="' + c1 + '"><textPath href="#sgA" startOffset="50%" text-anchor="middle">DINAS KESEHATAN MINSEL</textPath></text>' +
+          '<text font-family="Plus Jakarta Sans,Inter,Arial" font-size="7.6" font-weight="700" letter-spacing="1.2" fill="' + c1 + '"><textPath href="#sgB" startOffset="50%" text-anchor="middle">★ ESTEPEL • SAH ★</textPath></text>' +
+          '<path d="M45 61 l10 10 l20 -22" fill="none" stroke="' + c1 + '" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+      function gagal(judul, alasan) {
+        box.innerHTML = '<div class="vf-hd bad"><div class="vf-ikon" style="background:#FEE2E2;color:#DC2626"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div><span class="badge b-bad">TIDAK VALID</span><h1 style="margin-top:6px">' + esc(judul) + '</h1><div class="fs12" style="color:#991B1B;margin-top:4px">' + esc(alasan) + '</div></div></div>' +
+          '<div class="vf-body fs12 mut">Pastikan Anda memindai QR langsung dari dokumen Stempel Digital asli. Hubungi Dinas Kesehatan Kab. Minahasa Selatan bila meragukan keaslian dokumen.</div>';
+      }
+      var id = q.get('id') || '', v = q.get('v') || '', s = q.get('s') || '';
+      if (!id || !v || !s) { gagal('Kode verifikasi tidak lengkap', 'Tautan atau QR tidak memuat data yang dibutuhkan.'); return; }
+      if (!API.url()) { gagal('Server belum dikonfigurasi', 'GAS_URL di js/config.js masih kosong.'); return; }
+      API.publik({ action: 'verify', id: id, v: v, s: s }).then(function (j) {
+        if (!j || !j.success) { gagal('Verifikasi gagal', (j && j.message) || 'Server tidak merespons.'); return; }
+        if (!j.valid) { gagal('Stempel tidak dapat diverifikasi', j.alasan || 'Data tidak cocok.'); return; }
+        var tepat = /^Tepat/.test(j.ketepatan), dihapus = j.status === 'Dihapus';
+        var catatan = [];
+        if (j.versiTerbaru > j.versi) catatan.push('<div class="note warn fs12 mt8"><div>Stempel ini untuk <b>versi ' + j.versi + '</b>. Laporan telah direvisi — versi terbaru adalah <b>v' + j.versiTerbaru + '</b>.</div></div>');
+        if (dihapus) catatan.push('<div class="note bad fs12 mt8"><div>Laporan ini telah <b>dihapus</b> oleh Admin Dinkes setelah stempel diterbitkan.</div></div>');
+        var item = [['Nomor laporan', '<span class="mono">' + esc(j.id) + '</span>'], ['Versi', 'v' + j.versi + (j.versiTerbaru > j.versi ? ' <span class="badge b-warn b-sm">bukan terbaru</span>' : ' <span class="badge b-ok b-sm">terbaru</span>')],
+          ['Puskesmas pelapor', esc(j.unit)], ['Periode laporan', esc(j.periode)],
+          ['Waktu kirim versi ini', INTI.fmtTglJam(j.waktuKirim)], ['Kirim pertama (dasar ketepatan)', j.kirimPertama ? INTI.fmtTglJam(j.kirimPertama) : '-'],
+          ['Ketepatan', '<span class="badge ' + (tepat ? 'b-ok' : 'b-warn') + '">' + esc(j.ketepatan) + '</span>'], ['Status laporan', esc(j.status || '-')]];
+        box.innerHTML = '<div class="vf-hd ok">' + segel('#16A34A', '#4ADE80') + '<div><span class="badge b-ok">✔ ASLI &amp; TERVERIFIKASI</span><h1 style="margin-top:6px">Laporan STP tercatat resmi di ESTEPEL</h1><div class="fs12" style="color:#166534;margin-top:4px">' + esc(j.instansi || 'Dinas Kesehatan Kabupaten Minahasa Selatan') + '</div></div></div>' +
+          '<div class="vf-body"><div class="vf-grid">' + item.map(function (x) { return '<div><span>' + x[0] + '</span><b>' + x[1] + '</b></div>'; }).join('') + '</div>' + catatan.join('') +
+          '<div class="fs11 mut mt16">Diperiksa ' + INTI.fmtTglJam(Date.now()) + ' • Tanda tangan HMAC cocok dengan catatan server.</div></div>';
+        document.title = (j.valid ? '✔ Valid' : '✕ Tidak valid') + ' — ' + j.id + ' • ESTEPEL';
+      }, function () { gagal('Tidak dapat terhubung', 'Periksa koneksi internet Anda lalu muat ulang halaman ini.'); });
+    })();
+  </script>
+</body>
+</html>
